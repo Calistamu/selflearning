@@ -65,6 +65,17 @@ how much 报告的篇幅（并非越长越好，原创内容为主，避免复�
 
 *  原创性内容，加工整理
 
+## 安装kali
+
+选对类型就可以，具体版本没关系，主要生成初始硬件的配置类型。  
+最好是英文版  
+选择NAT为主网络  
+装服务器硬盘不要选择向导式，选manual，LVM提供更好的可靠性，由于虚拟机所以选择向导式  
+先备份，再使用  
+lsb查看设备
+iw dev查看网卡基本信息
+iw phy查看网卡物理信息
+
 # 2019.9.19
 
 ## 下载了文件应该校验完整性
@@ -97,6 +108,64 @@ kali网上有例子命令行操作
 
 USB设备过滤器
 新系统应该先做纯净系统的备份
+   
+        iw dev查看网卡基本信息
+        iw phy查看网卡物理信息
+
+## 跟着视频操作后发现 Kali 安装完成后无法上网
+
+完整复制以下代码到「终端」运行
+     
+     grep "iface eth1 inet dhcp" /etc/network/interfaces || cat << EOF >> /etc/network/interfaces
+     auto eth0
+     iface eth0 inet dhcp
+     auto eth1
+     iface eth1 inet dhcp
+     EOF
+
+重启网络管理服务
+
+     systemctl restart networking
+
+检查确认两块网卡都已分配到了正确的 IP
+      
+     ip a
+
+## 无法通过 ssh 访问 Kali
+
+默认安装完 Kali 后，系统未开启 SSH 服务，且默认 SSH 服务配置禁止 root 用户使用口令方式登录，因此需要按照以下方式操作一遍才能正确开启 SSH 服务。   
+            
+      grep -q 'PermitRootLogin yes' /etc/ssh/sshd_config || echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config  
+
+设置 SSH 服务为开机自启动
+
+      systemctl enable ssh  
+
+启动 SSH 服务
+  
+      systemctl start ssh  
+
+[chocolatey安装](https://chocolatey.org/courses/installation/installing?method=installing-chocolatey)  
+[WSL2安装](https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-install)  
+[cmder安装](https://cmder.net/)  
+NAT网络无法满足使用宿主机访问  
+openssh高级用法  
+.ssh保存公私钥  
+逆等率  
+win7 cmder  
+wsl或wsl2  
+openwrt开源的无线路由器，无线仿真的路由器  
+在路由器上进行漏洞的挖掘和复现，如何对路由器逆向工程，对他的配置文件进行编解码，加解密  
+正确的学习方法：看官方文档，一定要注意版本  
+建议下载稳定版本
+多重加载相当于创建了一个只读的文件系统  
+squashfs ex4 openwrt.org/docs/techret  
+查错误应该查错误关键字  
+chocolatey包管理软件方便安装  
+看文章的时候要仔细  
+查网卡
+
+
 
 
 

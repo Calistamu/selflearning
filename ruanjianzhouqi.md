@@ -116,5 +116,46 @@ lxml里面的存储结构etree，etree有很多不同的解析方法，比如Htm
 
 $x('')xpath命令
 
+# 2019.9.24
+
+进入仓库，先设公钥
+ssh-keygen -t ras -b 4096
+putty windows的终端
+有了公私钥以后不需要用户密码来登陆
+
+     1、打开git bash
+     2、执行生成公钥和私钥的命令：ssh-keygen -t ras -b 4096（为什么按三下，是因为有提示你是否需要设置密码，如果设置了每次使用Git都会用到密码，一般都是直接不写为空，直接回车就好了）。会在一个文件夹里面生成一个私钥 id_rsa和一个公钥id_rsa.pub。（可执行start ~ 命令，生成的公私钥在 .ssh的文件夹里面）
+     3、执行查看公钥的命令：cat ~/.ssh/id_rsa.pub  
+
+python -m pip install selenium requests lxml
+包名错误或者网速太慢，如果网速慢就需要使用国内包的源（直接搜索python源）  
+pythpon -m pip -i 连接
+[更改国内镜像源，提交下载速度](https://blog.csdn.net/lambert310/article/details/52412059)
+当我们的工程量大，写一个requirements.txt写入所有需要的包名，vps安装 
+python -m pip -r requirements.txt一次性安装
+
+接续lxml调用GDI的库进行渲染
+
+爬虫设计数据提交，需要登陆
+
+防火墙穿透
+五元组
+设置一些过滤规则
+有一张可以用美元的信用卡、去国外买一个vps linode.com,在C上架一个代理服务器，A上的代理设置成C，A-C必有加密通道，到C解密，异或最简单，shadowsocks部署一个server，防火墙是黑名单规则
+隧道，gotunnel，异或进行端口转发
+elem_user=self.driver.find_element_
+秒传是哈希值
+selenium提供统一的接口，chromedriver,firefoxdriver
+$x('//a[@class="left_tab_core"]')
+
+找一个有用户提交以
+
+有用户登陆功能，用户信息提交，并且能呈现给其他用户
+跨站脚本执行，也就是如果用户提交的如果有脚本，但是没有过滤，就会被执行，一个商品表，一个评论表，用户Id表，时间，用户有一个编辑框，输入后，数据进入数据库
+有一个有跨站脚本漏洞的程序,并成功利用这个漏洞
+
+写一个爬虫，自动提交和验证网页有这样的漏洞，看页面会不会执行我提交的脚本，判断是否有漏洞
+
+
 
 
