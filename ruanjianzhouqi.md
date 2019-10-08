@@ -174,6 +174,7 @@ java\python自己能判断变量需要多少的存储量，而C语言必须明�
     #include<string.h>
     int sub(char* x)
     {
+	    char y[10];
 	    strcpy_s(y, strlen(x), x);//拷贝目的地址，大小，拷贝的源，这个大小是为了判断大小是否越界，因此应该判断的是y的大小
 	    return 0;
     }
