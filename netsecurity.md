@@ -38,4 +38,30 @@ ping 地址 -n 1只发一个包，两个信息，一个请求一个响应
 用户体验的角度  
 默认还是普通，修改成多重加载
 
+# 2019.9.29
 
+CAM表动态学习，根据表中的查询有无命中来决定是否更新这个表  
+底层安全机制是上层安全机制的基础，
+
+## ARP欺骗的三种模式
+
+终端ARP缓存投毒
+  主动嗅探/中间人攻击
+交换机Dos 
+  强制交换机进入Hub模式：广播,集线器用的人越多，越慢
+  * 如果失败了，重启就可以了，不必捕获异常
+交换机投毒
+     
+     arp -a
+     #查看地址表
+
+第一个数据包是ipv6，因为ipv6有自己的邻居发现协议  
+抓得到广播包，抓不到相应包是与通信方式有关的   
+arp表可以动态分配，也可以静态配置  
+hostonly方便ssh  
+tupdump -i enp0s9 -n  网关
+apt update && apt install apache2安装apache attacker
+systemctl start apache2 attacker,如果apache没有监听在我们想访问的地址上，那么就还是不可以的
+apt update && apt install curl#网关安装curl
+apt update && apt install tiniproxy
+ps aux | grep apache
