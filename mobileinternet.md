@@ -7,13 +7,9 @@
 [教材](https://c4pr1c3.github.io/cuc-mis/?_blank)  
 [课件](sec.cuc.edu.cn/huangwei/cuc-wiki/courses/2017/misLecture0x01.pdf?_blank)  
 [公开仓库](https://classroom.github.com/a/nf63lwDF?_blank)  
-[私有仓库](https://classroom.github.com/a/UP5b348p?_blank)  
-老师使用OBS进行录频
-kalirolling虚拟机,具备很多安全相关的软件
-如何通过git术语
-如果想搭建无限的网络工作环境需要无线AP，用自己的AP搭建无线网络    
+[私有仓库](https://classroom.github.com/a/UP5b348p?_blank)   
 
-## 获得
+## 基本概念
 了解了电力猫  
 热点  
 802.11链路层和物理层，与网络层没有关系，黑盒化向上封装  
@@ -67,14 +63,16 @@ how much 报告的篇幅（并非越长越好，原创内容为主，避免复�
 
 ## 安装kali
 
-选对类型就可以，具体版本没关系，主要生成初始硬件的配置类型。  
-最好是英文版  
-选择NAT为主网络  
-装服务器硬盘不要选择向导式，选manual，LVM提供更好的可靠性，由于虚拟机所以选择向导式  
-先备份，再使用  
-lsb查看设备
-iw dev查看网卡基本信息
-iw phy查看网卡物理信息
+* 关于系统安装  
+  安装系统的时候，选对位数就可以，具体版本没关系，主要是生成一堆虚拟硬件的初始配置，要知道存储位置。  
+
+install(文本安装，live光盘模式选这个就无法保存在虚拟机中，graphical insatll是图形化界面)-english(避免奇怪翻译)-hongkong-american english-网卡eth0（nat网卡，如果没有hostonly需要手动创建，记得要开启dhcp服务，没有启动地话分配到hostonly的虚拟机无法自动设置地址，启用后默认分配了一个没有被占用的网段，也配置好了网卡。正常情况下不需要手工设置，若有例外，抄一个别人的，因为仅自己可见）-选guided(若是装服务器硬盘不要选择向导式，选manual，第三个加密方式的一旦出现分区卷的错误，不可恢复数据，第二个软件模式模拟的read提供更好的可靠性，由于虚拟机所以选择向导式)
+
+* 先备份，再使用  
+
+lsb查看设备  
+iw dev查看网卡基本信息  
+iw phy查看网卡物理信息  
 
 # 2019.9.19
 
@@ -215,21 +213,22 @@ squashfs ex4 openwrt.org/docs/techret
 
 ## openwrt安装
  
-### 方法一
+1. >方法一
 
-     # 下载镜像文件
-     wget https://downloads.openwrt.org/snapshots/targets/x86/64/openwrt-x86-64-combined-squashfs.img.gz
-     # 解压缩
-     gunzip openwrt-x86-64-combined-squashfs.img.gz
-     # img 格式转换为 Virtualbox 虚拟硬盘格式 vdi
-     VBoxManage convertfromraw --format VDI openwrt-x86-64-combined-squashfs.img openwrt-x86-64-combined-squashfs.vdi
-     # 新建虚拟机选择「类型」 Linux / 「版本」Linux 2.6 / 3.x / 4.x (64-bit)，填写有意义的虚拟机「名称」
-     # 内存设置为 256 MB
-     # 使用已有的虚拟硬盘文件 - 「注册」新虚拟硬盘文件选择刚才转换生成的 .vdi 文件
+     
+       # 下载镜像文件
+       wget https://downloads.openwrt.org/snapshots/targets/x86/64/openwrt-x86-64-combined-squashfs.img.gz
+       # 解压缩
+       gunzip openwrt-x86-64-combined-squashfs.img.gz
+       # img 格式转换为 Virtualbox 虚拟硬盘格式 vdi
+       VBoxManage convertfromraw --format VDI openwrt-x86-64-combined-squashfs.img openwrt-x86-64-combined-squashfs.vdi
+       # 新建虚拟机选择「类型」 Linux / 「版本」Linux 2.6 / 3.x / 4.x (64-bit)，填写有意义的虚拟机「名称」
+       # 内存设置为 256 MB
+       # 使用已有的虚拟硬盘文件 - 「注册」新虚拟硬盘文件选择刚才转换生成的 .vdi 文件
 
-### 方法二
+>方法二
 
-1.[openwrt安装教程](https://openwrt.org/docs/guide-user/virtualization/virtualbox-vm？_blank)
+[openwrt安装教程](https://openwrt.org/docs/guide-user/virtualization/virtualbox-vm？_blank)
 [openwrt官方镜像下载](https://downloads.openwrt.org/?_blank)  
 
 * 对于在 VirtualBox 中安装 OpenWrt 来说首选 x86 架构的镜像文件以获得最好的运行兼容性保证。
@@ -364,21 +363,41 @@ internet-内容-证书
 访问控制bypass  
 代码和配置的分离
 仅靠ip地址是不行的
-自主访问控制：作为权限的所有者可以自主地根据自己的需要进行设置。  
-软件安全就是研究在没有源码的情况下，我直接修改二进制文件  
-基于角色的访问控制是特殊的强制访问控制  
-属主权限是一种特殊的权限，所有者可以在有权限的用户里面也可以不在  
-强制访问控制模型
-blp和lattice 保密性模型，上写下读
-BiBa模型 完整性模型，上读下写，系统更新的时候可以体会到，完整性高的模型可以向完整性低的用户提供数据，由于我们是自主访问用户，因此我们可以对权限进行重新划分  
+自主访问控制：作为权限的所有者可以自主地根据自己的需要进行设置。    
+软件安全就是研究在没有源码的情况下，我直接修改二进制文件    
+基于角色的访问控制是特殊的强制访问控制    
+属主权限是一种特殊的权限，所有者可以在有权限的用户里面也可以不在    
+强制访问控制模型  
+blp和lattice 保密性模型，上写下读  
+BiBa模型 完整性模型，上读下写，系统更新的时候可以体会到，完整性高的模型可以向完整性低的用户提供数据，由于我们是自主访问用户，因此我们可以对权限进行重新划分    
 sql不仅可以看数据，还可以向数据库写入数据  
 低危漏洞的组合可以达到高危漏洞的效果，高危漏洞如果没有正确的漏洞利用，同样没有效果  
-cass calculator漏洞评分计算器，打分过程基于我们对漏洞的客观认识，加上主观评价，但是不会有特别大的偏差，CVE攻击公开的漏洞信息数据库
-[识别ip地址](www.myip.cn)
-代理服务器的寿命都不长
-HSTS需要网站通过代码的方式加入到机制里面
-proxychains4 curl 链接，windows上下载curl  
-老师的知乎，百付宝
-反向代理是什么：正向代理隐藏真实客户端，反向代理隐藏真实服务端
-内容小偷网站
-镜像代理
+cass calculator漏洞评分计算器，打分过程基于我们对漏洞的客观认识，加上主观评价，但是不会有特别大的偏差，CVE攻击公开的漏洞信息数据库  
+[识别ip地址](www.myip.cn)  
+代理服务器的寿命都不长  
+HSTS需要网站通过代码的方式加入到机制里面  
+proxychains4 curl 链接，windows上下载curl    
+老师的知乎，百付宝  
+反向代理是什么：正向代理隐藏真实客户端，反向代理隐藏真实服务端  
+内容小偷网站  
+镜像代理  
+
+# 第二章 无线接入网监听
+
+## 无线网络监听的基本条件
+- 无线网卡
+- 无线网卡驱动 kali是不需要安装的,openwrt需要安装，无线网卡设置工具iwconfig
+- 抓包器 wireshark\tshark\airodump-ng\tcpdump(课本有如何抓无线数据包的方法)
+   * 是在无线网卡没有加入到任何一个无线网络的情况下监听和嗅探，是为了获得链路层802.11的帧结构信息
+- 操作系统支持设置无线网卡进入monitor模式
+   * 无需加入任何一个BSS，无需绑定到一个AP或进入Ad-Hoc模式，无线网卡通过channel hopping 技术在多个channel之间快速切换，捕获802.11数据帧
+-
+
+
+2019.10.17
+VS code的远程功能
+cat /etc/resolv.conf查看域名解析服务器
+namesever 202.205.
+没有消息就是最好的消息
+最小化的字典爆破密码，知识星球上看github.com/brannondorsey/PassGAN根据个人信息，破解成功率很高
+ 
