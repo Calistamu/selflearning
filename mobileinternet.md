@@ -416,3 +416,18 @@ proxychains4 curl 链接，windows上下载curl
 
  firefoxproxy可以自动删除
  
+# 2019.10.24
+ dnsmasq  
+ 如何写成自动化脚本  
+ evil seeid defcon  
+ evil essid实验里面讲了利用搜索引擎找找不到的网页自学，插入要看  
+ 大潘的极限演讲，《从安全思维谈到心思的修炼》  
+ sec.cuc.edu.cn/huangwei/wiki/index.html里面的文章要去看  
+ archive.org在任何搜索引擎都找不到的东西可以在这里找shadowsocks  
+ Evil ESSID
+  唯一标识符：广播的SSID，此字段设置为0  
+  长度：
+  * 允许通过我们的短信邀请别人  
+  搜索引擎是有语法的
+  
+ 
