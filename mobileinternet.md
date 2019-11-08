@@ -395,7 +395,8 @@ proxychains4 curl 链接，windows上下载curl
 -
 
 
-2019.10.17
+# 2019.10.17
+
 VS code的远程功能
 cat /etc/resolv.conf查看域名解析服务器
 namesever 202.205.
@@ -430,4 +431,12 @@ proxychains4 curl 链接，windows上下载curl
   * 允许通过我们的短信邀请别人  
   搜索引擎是有语法的
   
+# 2019.11.7
+
+# 第四章
+
+esim卡是什么，软件模拟复制sim卡
+hook是什么
+微信，手机才是最高权限的用户
+授权和访问控制要做成集中式的，避免多开
  
