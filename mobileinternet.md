@@ -2,7 +2,7 @@
 [校内访问](sec.cuc.edu.en?_blank)  
 [校外访问](https://github.com/c4pr1c3/cuc-wiki?_blank)  
 [往届仓库示例](https://github.com/CUCCS?_blank)  
-[教学视频](sec.cuc.edu.cn/ftp/video?_blank)  
+[教学视频](sec.cuc.edu.cn/ftp/video/)  
 [教材](https://c4pr1c3.github.io/cuc-mis/?_blank)  
 [课件](sec.cuc.edu.cn/huangwei/cuc-wiki/courses/2017/misLecture0x01.pdf?_blank)  
 [公开仓库](https://classroom.github.com/a/nf63lwDF?_blank)  
@@ -418,3 +418,11 @@ hook是什么
 微信，手机才是最高权限的用户
 授权和访问控制要做成集中式的，避免多开
  
+ ## 第五章、
+ ### 安卓 
+ * 新版本系统更新部署到终端设备周期较长 
+ * 系统组成  
+ Linux内核和大量第三方开源组件支撑了Android底层关键技术构建  
+ * 运行，版本小于手机的系统版本
+ * 分渠道打包  
+ 适用于不同的应用市场
