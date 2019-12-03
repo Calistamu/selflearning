@@ -18,3 +18,9 @@ tcpdump -1 eth0 -n -s 65535 -w saved.pcap
 * -n避免反向解析，就能看懂包
 * -s定长
 * 抓包命令行，分析图形化工具
+```
+ip link set eth0 promisc on #网卡开启混杂模式
+```
+```
+cat /etc/resolv.conf #更改域名解析服务器
+```
