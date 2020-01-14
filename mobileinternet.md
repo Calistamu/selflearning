@@ -1,14 +1,13 @@
+# MIS移动互联网安全
 
-[校内访问](sec.cuc.edu.en?_blank)  
-[校外访问](https://github.com/c4pr1c3/cuc-wiki?_blank)  
-[往届仓库示例](https://github.com/CUCCS?_blank)  
+[校内访问](sec.cuc.edu.en)  
+[校外访问](https://github.com/c4pr1c3/cuc-wiki)   
 [教学视频](sec.cuc.edu.cn/ftp/video/)  
-[教材](https://c4pr1c3.github.io/cuc-mis/?_blank)  
-[课件](sec.cuc.edu.cn/huangwei/cuc-wiki/courses/2017/misLecture0x01.pdf?_blank)  
-[公开仓库](https://classroom.github.com/a/nf63lwDF?_blank)  
-[私有仓库](https://classroom.github.com/a/UP5b348p?_blank)   
+[教材](https://c4pr1c3.github.io/cuc-mis/)  
+[课件](sec.cuc.edu.cn/huangwei/cuc-wiki/courses/2017/misLecture0x01.pdf)  
+ 
 
-## 如何写实验报告
+## 《如何写一篇优秀的实验报告》视频学习
 
 ### 5W2H
 
@@ -39,20 +38,51 @@ How实验操作步骤描述、代码、配置文件、完整命令行等
 how much 报告的篇幅（并非越长越好，原创内容为主，避免复制粘贴参考资料中内容）、图片的后期处理（标注、尺寸裁剪）、操作录像（精简、避免无效操作、剪辑掉长时间的静止画面）、排版（markdown使用规范性、易读性）
 
 *  原创性内容，加工整理
+# 第一章 无线网络安全基础
+## 基础概念
 
-## 安装kali
+## 实验操作
+
+### 安装kali
 
 * 关于系统安装  
   安装系统的时候，选对位数就可以，具体版本没关系，主要是生成一堆虚拟硬件的初始配置，要知道存储位置。  
-
+安装步骤：
 install(文本安装，live光盘模式选这个就无法保存在虚拟机中，graphical insatll是图形化界面)---english(避免奇怪翻译)---hongkong---american english-网卡eth0（nat网卡，如果没有hostonly需要手动创建，记得要开启dhcp服务，没有启动地话分配到hostonly的虚拟机无法自动设置地址，启用后默认分配了一个没有被占用的网段，也配置好了网卡。正常情况下不需要手工设置，若有例外，抄一个别人的，因为仅自己可见）---选guided(若是装服务器硬盘不要选择向导式，选manual，第三个加密方式的一旦出现分区卷的错误，不可恢复数据，第二个软件模式模拟的read提供更好的可靠性，由于虚拟机所以选择向导式)
-
 * 先备份，再使用  
+* iw dev查看网卡基本信息  
+* iw phy查看网卡物理信息  
+### Kali 安装完成后无法上网解决办法
 
-iw dev查看网卡基本信息  
-iw phy查看网卡物理信息  
+完整复制以下代码到「终端」运行
+     
+     grep "iface eth1 inet dhcp" /etc/network/interfaces || cat << EOF >> /etc/network/interfaces
+     auto eth0
+     iface eth0 inet dhcp
+     auto eth1
+     iface eth1 inet dhcp
+     EOF
 
-# 2019.9.19
+重启网络管理服务
+
+     systemctl restart networking
+
+检查确认两块网卡都已分配到了正确的 IP
+      
+     ip a
+### 无法通过 ssh 访问 Kali
+
+默认安装完 Kali 后，系统未开启 SSH 服务，且默认 SSH 服务配置禁止 root 用户使用口令方式登录，因此需要按照以下方式操作一遍才能正确开启 SSH 服务。   
+            
+      grep -q 'PermitRootLogin yes' /etc/ssh/sshd_config || echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config  
+
+设置 SSH 服务为开机自启动
+
+      systemctl enable ssh  
+
+启动 SSH 服务
+  
+      systemctl start ssh 
 
 ## 下载了文件应该校验完整性
 
@@ -81,45 +111,6 @@ kali网上有例子命令行操作
 虚拟机的设置相当于影响的是链路层
 
         lsusb列出Usb信息
-
-USB设备过滤器
-新系统应该先做纯净系统的备份
-   
-        iw dev查看网卡基本信息
-        iw phy查看网卡物理信息
-
-## 跟着视频操作后发现 Kali 安装完成后无法上网
-
-完整复制以下代码到「终端」运行
-     
-     grep "iface eth1 inet dhcp" /etc/network/interfaces || cat << EOF >> /etc/network/interfaces
-     auto eth0
-     iface eth0 inet dhcp
-     auto eth1
-     iface eth1 inet dhcp
-     EOF
-
-重启网络管理服务
-
-     systemctl restart networking
-
-检查确认两块网卡都已分配到了正确的 IP
-      
-     ip a
-
-## 无法通过 ssh 访问 Kali
-
-默认安装完 Kali 后，系统未开启 SSH 服务，且默认 SSH 服务配置禁止 root 用户使用口令方式登录，因此需要按照以下方式操作一遍才能正确开启 SSH 服务。   
-            
-      grep -q 'PermitRootLogin yes' /etc/ssh/sshd_config || echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config  
-
-设置 SSH 服务为开机自启动
-
-      systemctl enable ssh  
-
-启动 SSH 服务
-  
-      systemctl start ssh  
 
 ## 一些工具介绍
 [chocolatey安装](https://chocolatey.org/courses/installation/installing?method=installing-chocolatey?_blank)包管理工具方柏霓安装  
