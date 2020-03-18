@@ -34,3 +34,5 @@ man -k printf
 # 直接查看系统调用类帮助文档中主题名为printf的手册页
 man 3 printf
 ```
+
+[Markdown+pandoc+reveal.js做网页PPT](https://www.jianshu.com/p/9b71614f57b1)
