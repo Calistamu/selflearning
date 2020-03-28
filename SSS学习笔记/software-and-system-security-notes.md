@@ -185,7 +185,10 @@ http请求有很多种，我们通常使用得最多的，是GET和POST。大家
 [安装 django ](https://docs.djangoproject.com/en/3.0/),以下[官方文档教程四个命令](https://docs.djangoproject.com/en/3.0/intro/tutorial01/)，构建了一个基于Django的基本框架的web应用程序。然后访问 'http://127.0.0.1:8000/'，可以看到结果:  
 * 如果pip安装速度很慢，大家可以修改pip使用的镜像源，改为国内的源，速度就会很快，比如我图里使用的aliyun的镜像。
 ```
+# 下载安装Django
 pip install Django```或```python -m pip install Django
+# 四个命令，构建了一个基于Django的基本框架的web应用程序
+django-admin startproject mysite
 cd  mysite
 python manage.py startapp polls
 python manage.py runserver
@@ -199,9 +202,48 @@ mvt：
 只是换了个名字，叫mvt，t是页面模板。  
 
 写Django的程序，或者任何框架程序。主要就是写三大部分：  
-第一，数据模型，models，第二，views和url。是用户请求对应的处理程序。第三，前端页面模板。处理完的结果如何显示的问题。其中url部分，又称为路由。是把用户请求的url，对应到处理函数的过程。Django的处理函数，有一个专门名称，叫views。其基本过程就是框架收到用户的request ，其中有URL。框架根据urls.py中的配置。将用户请求对应到一个处理函数。一般在views.py中。views.py中的函数，参数就是request对象，Django中是HttpRequest类。然后views函数需要返回一个HTTPResponse类型的request，Django把这个reqeust变化为http协议的request数据包，返回给浏览器。一般在views的处理过程中，会访问数据库，也就是models。models吧底层的数据库操作，比如sql全部封装为了对象化的处理。比如底层操作数据库是用sql语句，这个大家在数据的课程中学习过。所以我们最原始的web程序，一般会程序员拼装sql语句。但是在Django中不用。我们把这种底层数据的封装，称为orm。Object-relational Mapper。
+第一，数据模型，models，第二，views和url。是用户请求对应的处理程序。第三，前端页面模板。处理完的结果如何显示的问题。其中url部分，又称为路由。是把用户请求的url，对应到处理函数的过程。Django的处理函数，有一个专门名称，叫views。其基本过程就是框架收到用户的request ，其中有URL。框架根据urls.py中的配置。将用户请求对应到一个处理函数。一般在views.py中。views.py中的函数，参数就是request对象，Django中是HttpRequest类。然后views函数需要返回一个HTTPResponse类型的request，Django把这个reqeust变化为http协议的request数据包，返回给浏览器。一般在views的处理过程中，会访问数据库，也就是models。models吧底层的数据库操作，比如sql全部封装为了对象化的处理。比如底层操作数据库是用sql语句，这个大家在数据的课程中学习过。所以我们最原始的web程序，一般会程序员拼装sql语句。但是在Django中不用。我们把这种底层数据的封装，称为orm（Object-relational Mapper）。
 
+框架：框架第一，把web开发流程变成了mvc结构。第二，提供了非常多丰富的web开发过程中需要使用的库。框架处理了最基本的请求响应过程。把请求映射到了处理函数，程序员就不用管很多麻烦的底层过程。只需要专心业务逻辑的处理。  
 
+使用数据库，现在我们使用的数据库分两种，一种叫关系型数据库，一种叫非关系型数据库。其中教务系统这种信息管理类的软件，一般是使用关系型数据库。关系型数据库的基本结构是表。那如何体现“关系”呢？关系其实是指表与表之间的关系。首先就是设计数据库表结构，一个教务系统，最少需要三张表：学生信息、课程信息、选课信息。
+```
+# 建一个app：edu_admin
+python manage.py startapp edu_admin
+```
+修改表结构：替换edu_admin中models.py，内容如下：
+```
+from django.db import models
+from django.contrib.auth.models import AbstractUser
 
+class Course(models.Model):
+    name = models.CharField(verbose_name='课程名', max_length=100)
+    number = models.IntegerField(verbose_name='编号', default=0)
+    summary = models.CharField(verbose_name='摘要', max_length=500, null=True)
+
+class Student(models.Model):
+    class_name = models.CharField(verbose_name="班级", max_length=100, blank=True, null=True)
+    name = models.CharField(verbose_name="姓名", max_length=100, blank=True, null=True)
+    number = models.IntegerField(verbose_name="学号", default=0)
+    phone_number = models.CharField(verbose_name='手机号', max_length=11, null=True)
+
+class Score(models.Model):
+    course = models.ForeignKey(Course,verbose_name='课程', on_delete=models.CASCADE, related_name='students')
+    student = models.ForeignKey(Student,verbose_name='学生', on_delete=models.CASCADE, related_name='my_courses')
+    score = models.FloatField(verbose_name='成绩', null=True)
+```
+我们需要把这个表结构，真实的写入到数据库中。也就是create table的过程。django称为migrate。打开 mysite的settings.py，在  INSTALLED_APPS 这里增加一个 edu_admin[官方添加方法](https://docs.djangoproject.com/en/3.0/intro/tutorial02/#activating-models)，表示 edu_admin 这个是我们这个site的一个app，之前startapp命令只是创建了app，必须要把app写入到这里，这个app才会被纳入到站点功能中。
+```
+python .\manage.py makemigrations
+python .\manage.py migrate
+```
+效果如下图
+![](images/django-migration.png)
+然后会出现一个 db.sqlite3文件数据库表结构就建立完成了。Django这里默认使用了sqlite这种简单的文件型数据库。settings里加app,加了才会有刚才建的表.Django这里默认使用了sqlite这种简单的文件型数据库。这种数据库的好处是不用按照，就是一个文件来保存数据的所有信息，适合轻量级小规模的应用。但是效率和容量都有效。一般用在开发调试环境，不用在生产环境。加了app以后，执行makemigrations和migrate。makemigrations成功的标志是在app的目录下有migrations目录。  
+
+为了验证Django真的建立了表，我们去下载一个sqlite的客户端软件，来看一下它的表结构。[Windows的同学，下载sqlite-tools-win32-x86-3310100.zip](https://www.sqlite.org/download.html),Linux的同学直接 apt install sqlite3。把这个exe加入在PATH环境变量，或者放在db.sqlite同一个目录,然后```sqlite3.exe db.sqlite3```进入到sqlite的命令行以后 执行 ```.table```。然后可以看到所有的表,如下图所示
+![](images/sqlite-table.png)
+这三个表是我们在models中定义的。其他表是Django自己要用的。然后大家可以执行sql语句，插入一条记录。insert和select可以成功。如下图所示，说明表是好的。
+![](images/sqlite-insert.png)
 
 然后我会说sql注入的基本原理。然后再给大家分析一下sql注入和xss在django框架下是如何被解决的。
