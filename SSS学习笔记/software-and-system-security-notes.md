@@ -241,9 +241,12 @@ python .\manage.py migrate
 ![](images/django-migration.png)
 然后会出现一个 db.sqlite3文件数据库表结构就建立完成了。Django这里默认使用了sqlite这种简单的文件型数据库。settings里加app,加了才会有刚才建的表.Django这里默认使用了sqlite这种简单的文件型数据库。这种数据库的好处是不用按照，就是一个文件来保存数据的所有信息，适合轻量级小规模的应用。但是效率和容量都有效。一般用在开发调试环境，不用在生产环境。加了app以后，执行makemigrations和migrate。makemigrations成功的标志是在app的目录下有migrations目录。  
 
-为了验证Django真的建立了表，我们去下载一个sqlite的客户端软件，来看一下它的表结构。[Windows的同学，下载sqlite-tools-win32-x86-3310100.zip](https://www.sqlite.org/download.html),Linux的同学直接 apt install sqlite3。把这个exe加入在PATH环境变量，或者放在db.sqlite同一个目录,然后```sqlite3.exe db.sqlite3```进入到sqlite的命令行以后 执行 ```.table```。然后可以看到所有的表,如下图所示
+为了验证Django真的建立了表，我们去下载一个sqlite的客户端软件，来看一下它的表结构。[Windows的同学，下载sqlite-tools-win32-x86-3310100.zip](https://www.sqlite.org/download.html),Linux的同学直接 apt install sqlite3。把这个exe加入在PATH环境变量，或者放在db.sqlite同一个目录,然后```sqlite3.exe db.sqlite3```进入到sqlite的命令行以后 执行 ```.table```。然后可以看到所有的表,如下图所示。
+
 ![](images/sqlite-table.png)
+
 这三个表是我们在models中定义的。其他表是Django自己要用的。然后大家可以执行sql语句，插入一条记录。insert和select可以成功。如下图所示，说明表是好的。
+
 ![](images/sqlite-insert.png)
 
 然后我会说sql注入的基本原理。然后再给大家分析一下sql注入和xss在django框架下是如何被解决的。
@@ -342,3 +345,14 @@ render是一个Django内置的函数。用于在模板文件的基础上，通�
 大型数据库可不是一个文件这么简单。不同的数据库都有不同的直接访问数据的客户端软件。然后所有的数据库又都支持sql。
 
 * 作业：学习sql_injection.py
+#### 通过sql_injection.py学习sql注入
+>file/mysite/sql_injection.py
+* 在vscode中调试，我们需要增加launch.json的配置。在调试界面，点击 “增加配置”，选python 当前文件.然后在 launch.json中，会怎么一个配置项。用这种方式可以调试sql_injection。然后点击sql_inejction文件，使其成为编辑器的当前文件，就可以调试了。
+运行以后，是一个编辑框，输入学生ID，查询对应的成绩。输入1，得到如下图结果。返回了用户id=1的成绩
+![](images/sql-.png)
+如果输入1 OR 1=1,得到如下图的结果。查出了当前系统中所有用户的成绩。相当于获得了整个数据库。
+![](images/sql2.png)
+问题在代码的43行，我们直接把用户输入的数据，作为sql语句中的查询条件。最后的 sql语句为：```SELECT edu_admin_course.name, edu_admin_score.score FROM edu_admin_score INNER JOIN edu_admin_course ON edu_admin_score.course_id=edu_admin_course.id WHERE student_id = 1 OR 1=1```
+查询条件变成了 student_id = 1 OR 1=1,1=1恒为真， 任何数OR真值，也是真。所以，相当于 SELECT edu_admin_course.name, edu_admin_score.score FROM edu_admin_score INNER JOIN edu_admin_course ON edu_admin_score.course_id=edu_admin_course.id WHERE true;或者没有WHERE,变成了无条件查询。于是显示出了数据中的所有记录。  
+还是我们之前说的，在软件安全中，有一个原则，所有用户的输入都是不可信的。因此，我们必须对用户输入进行过滤。进行严格的限制。那么这里提个问，如何打补丁？如何修改才能避免这个漏洞？我提示一下。既然输入的为ID，那么ID是不是只能是整数。使用参数化查询语句:不将用户的输入作为SQL指令的一部分处理，而是在完成SQL指令的编译后，才套用参数执行。  
+两种方法，一种很简单。就是对用户输入进行过滤，比如这里。我们可以判断一下input_data是否数字就可以，用python内置函数 isdigit就可以判断。在这个具体的漏洞可以采用这种方法。但是对于大型的系统，会有很多sql语句拼接和执行的地方。每一个都去过滤，编程效率很低，而且不一定能保证你写的过滤就是对的。实际系统的业务远比我们这里输入ID要复杂。这里就在说回到Django，这就是框架ORM的意义了。ORM完全避免了程序员直接接触sql语言，所有的sql语句都在模型管理器中有框架进行拼接。程序员在编程时，只需要使用模型管理器提供的方法进行查询，创建等，就可以了。比如，我们之前写的Django代码。```result = Score.objects.filter(student=request.user)```底层在进行sql的拼接,就避免了这种情况。这里我说明一下，Django的模型管理器中，主要有filter get等获取数据的方法。这些方法返回的数据类型是QuerySet数据类型。这个数据类型是一个数据库访问的接口。在调用filter时，实际上还未查询数据库，只是初步完成了数据库sql语句的拼接。实际的查询是在render中进行的。Django会根据render时需要的具体数据，来精确优化查询语句，所有这里的result，并不是真正的查询结果。而是一个查询对象。在模板 score.html 我们用到了 数据 {{ i.course.name }}，course是 socre表的一个外键，course.name实际是在course表中。所以这里其实是一个跨表查询。这种两个表的跨表查询，我们自己写的sql语言已经比较复杂了。真实系统往往会有多个表的联合跨表查询，sql语句会非常复杂。但是Django处理后，查询数据库的操作就变得非常简单，把数据中的值得访问，编程了python对象的属性访问。所以，建议大家，使用框架。
