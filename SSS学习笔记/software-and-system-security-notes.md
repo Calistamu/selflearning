@@ -408,3 +408,33 @@ malloc还不是最底层的内存管理方式。malloc我们称为堆内存管�
 如果你学通了，你就有能力去开发操作系统啦。要想深入理解，还的动手实验。  
 * 作业：1、验证不同进程的相同的地址可以保存不同的数据。（1）在VS中，设置固定基地址，编写两个不同可执行文件。同时运行这两个文件。然后使用调试器附加到两个程序的进程，查看内存，看两个程序是否使用了相同的内存地址；（2）在不同的进程中，尝试使用VirtualAlloc分配一块相同地址的内存，写入不同的数据。再读出。2、（难度较高）配置一个Windbg双机内核调试环境，查阅Windbg的文档，了解（1）Windbg如何在内核调试情况下看物理内存，也就是通过物理地址访问内存（2）如何查看进程的虚拟内存分页表，在分页表中找到物理内存和虚拟内存的对应关系。然后通过Windbg的物理内存查看方式和虚拟内存的查看方式，看同一块物理内存中的数据情况。
 * 其中第二个作业难度比较大。首先需要搭建Windbg的内核调试环境。由于我们直接调试的操作系统内核，所以需要两台计算机安装两个Windows，然后连个计算机使用串口进行链接。好在我们有虚拟机。所以我们需要再虚拟机中安装一个Windows（安装镜像自己找，XP就可以），然后通过虚拟串口和host pipe链接的方式，让被调试系统和windbg链接，windbg可以调试。使用Windbg  内核调试 VirtualBox 关键字搜索，能找到很多教程。如果觉得Windows虚拟机太重量级了，可以用Linux虚拟机+gdb也能进行相关的实验，以gdb 远程内核调试 为关键字搜索，也能找到很多教程。
+[1](https://www.cnblogs.com/ck1020/p/6148399.html)、[2](https://blog.csdn.net/lixiangminghate/article/details/54667694)、[3](https://blog.csdn.net/lixiangminghate/article/details/54667694)、[4](https://blog.csdn.net/weixin_42486644/article/details/80747462)、[5](https://www.jianshu.com/p/09fab7c07533)、[6](https://zhuanlan.zhihu.com/p/47771088)、[7](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/-pte)、[8](https://reverseengineering.stackexchange.com/questions/21031/windbg-what-is-the-relation-between-the-vad-vad-the-ptes-pte-and-loade)、[9](https://stackoverflow.com/questions/16749764/when-kernel-debugging-find-the-page-protection-of-a-user-mode-address)
+### shellcode 
+栈溢出漏洞，当向栈中的局部变量拷贝了超长的数据，覆盖了在局部变量的内存空间之后的函数返回地址。那么当函数返回的时候就会跳转到覆盖后新的地址。那么跳转到新的地址后，这一段新的地址的数据，如果是可执行的一段代码。那么这段代码就会被执行。这段代码当然是需要攻击者来编写的，攻击者通过这段代码来实现攻击之后的控制等等功能。早起，黑客在攻击了一个系统以后，最常使用的控制方式是创建一个远程的shell，这要黑客就可以远程通过命令的方式控制目标计算机了。就像我们现在的ssh远程控制计算机一样。不过ssh是管理员主动开启的，黑客攻击后的shellcode是通过漏洞非法入侵后开启的。由于早期的黑客攻击后通常是开启一个shell，所以这段在缓存区溢出以后跳转执行的一段代码，就被称为shellcode。现在呢，shellcode的功能已经很多了，千奇百怪。但是总体的目的还是对远程的目标计算机进行控制。大家看这个[链接](https://www.exploit-db.com/shellcodes)，有很多shellcode，各个平台的。比如有增加一个用户，关闭防火墙等等。
+![](images/shellcode.png)  
+其中这个shellcode就是一开始发给大家的。[这个shellcode](https://www.exploit-db.com/shellcodes/48116)的功能是运行一个计算器程序。这个是白帽子黑客们在编写PoC时最常使用的一种方法。能证明系统被控制，因为如果能悄无声息的运行计算机程序，理论上来说就能运行任何程序，改一个参数的事。shellcode的编写不同于我们之前学过的所有的程序开发。它有一些自己独门的技巧。但是shellcode的开发呢，又是每个软件安全的学习者必学的内容。是我们的重点之一。  
+
+大家开到代码的前半段是汇编。到接近结束的时候有，有一排#######。下面是一段C语言的代码。其中汇编部分是源代码。C语言中的 code 变量，是前面的汇编代码在编译以后的二进制程序。这一段就是可运行的shellcode了。然后下面的main函数，是吧这个code运行起来。它是怎么运行的呢。这一段代码用到了一个较为高级的C语言语法，函数指针。定义了一个函数指针变量，func。这个函数指针的变量类型是int(\*)()，表示返回值是int，参数列表为空的一个函数。在main函数的第二行，把全局变量 code 赋值给 func。并强制类型转换为 int(*)() 类型的函数指针,这样 func就有值了。就可以被调用了，由于func所指向的地址，就是code的地址，所有调用func的时候，运行的就是 code里面的那一堆二进制代码。我们来试一下。现在VS中建一个空工程，把###########后整个C语言部分复制到VS中。然后编译，运行。不出意外的话，你们会遇到一个错误。0xC0000005 是Windows系统内部错误代码，表示内存访问异常。这个错误，表示你当前访问了一个未分配的内存地址。或者，所访问的内存地址的保护属性冲突。比如如果内存的保护属性是 readonly，但是你写入了，那么也会引起这个访问异常错误。  
+那么，我们这里时属于第几种情况呢？我们下一个断点，单步执行。是在运行 (int)(\*func)() 时出错的。这一行是干什么呢？是调用 func执行，而现在func是指向code的，也就是func的值是code的内存地址。而code这段内存是存在的吗？是，它是一段已经分配的内存。因为它是全局变量，在程序运行起来后，就存在内存中，是进程的初始化过程就完成了内存分配，并由进程初始化程序从可执行文件中直接载入内存的。全局变量，肯定是有效地址，是可以访问的。那就应该是第二种情况，内存分页的保护属性问题。其实和Linux里的文件类似，操作系统中的内存分页，也分为读写执行三种保护属性。由于code是全局变量，是数据，通常情况下，会给数据设置可读和可写的内存保护属性，但是一般不会给执行属性。但是我们要去执行它，所以可能引发了异常。  
+我们再来验证一下。调试窗口,右键转到反汇编。现在是 停留在 call func这里F11,![](images/callfunc.png)F11,单步步入执行。现在到达这里，再F11。![](images/callfunc2.png)异常出现了。![](images/callfunc3.png)这里 00FD7000 就是code的第一个字节的位置。怎么修改这个错误呢？修改内存保护属性呗。virtualprotect.改一下代码
+```
+int main(int argc, char** argv)
+{
+ int (*func)();
+ DWORD dwOldProtect;
+ func = (int(*)()) code;
+ VirtualProtect(func, sizeof(code), PAGE_EXECUTE_READWRITE, &dwOldProtect);
+ (int)(*func)();
+}
+```
+我来解释一下代码，VirtualProtect 函数会把第一个参数，这里是 func，所指向的内存地址的 第二个参数，这里是 sizeof(code)，这段内存区域所在分页的内存属性修改为第三个参数的属性。PAGE_EXECUTE_READWRITE 表示这段内存，是可读可写可执行。然后 通过第四个参数 dwOldProtect 反正在修改之前的内存保护属性。运行了计算器程序，说明我们的shellcode运行成功了。  
+怎么解读这段shellcode代码呢。还是用我们的反汇编利器。和源代码中的汇编部分，是不是一样的。code反汇编之后，就是汇编的源码。其实，我们这段code，就是通过前面的汇编代码，编译以后直接从汇编编译以后，从可执行文件中 dump出来的。nasm 汇编器 编译为 .o文件,然后用objdump。这些我们之前稍微讲过的，大家在bash或者Linux环境中运行一下这两个命令。能够得到code。不过由于编译器版本不一样 code可能会略有区别，但是会略有区别。把这之前的汇编代码保存为win32-WinExec_Calc-Exit.asm,然后运行两条命令。![](imagse/asmcommand.png)得到结果![](images/asmresult.png)  
+开始解读代码:大家有没有想过，如果我们用C语言编写一个运行计算器的程序，其实很简单。我们只需要调用一下WinExec函数，或者CreateProcess函数。如果用汇编来写，也就是几条指令的事。我们学过逆向工程的都知道 几个参数 push 入栈以后，call函数地址就可以了。就能调用函数地址。那为什么我们这段代码写的这么复杂呢？一百行左右了吧.还有循环。如果我们是在C语言中编写调用WinExec函数，那个call之后的WinExec函数的地址，是编译器帮我们在可执行程序的导入表中导入了。在进程初始化的过程中，系统会帮我们计算好WinExec函数的地址，然后把函数地址放在导入表中指定的位置。在shellcode中，有这个过程吗？要意识到，我们最终是要把这代code嵌入到溢出攻击的数据中。被攻击的目标对象会有动态链接的过程吗？没有，也就是code这段代码，如果要call WinExec，那么WinExec函数在哪？没人告诉code。没人帮忙怎么办？那就只好自己干。也就是说，shellcode，其实干了一个进程初始化的过程中，操作系统在干的事情——API函数的动态链接。也就是找到需要调用的API函数的地址。那这个问题简单啊，我们不是有GetProcAddress函数吗，这个函数就可以获得API函数的地址啊。问题又来了，GetProcAddress函数，也是一个API啊.GetProcAddress函数的地址也不知道呢，如果能调用GetProcAddress函数，那WinExec也能调了。所以任何 API地址都没有。shellcode进入到了一个完全陌生的环境。啥也没用。  
+所以早期的黑客们，想了很多办法，能不能比较原始的办法，能够获得API地址。其实操作系统，也有一个加载的过程。黑客们逆向分析了Windows系统的内部代码，分析了Windows系统内部管理进程初始化相关的数据结构。发现有一个链表，管理了所有的已经加载的dll文件。这个链表，就是我们这个代码里InitOrderModuleList.这个InitOrderModuleList 在一个称为 LDR 的数据结构里。这个LDR的数据结构，又在 PEB这个数据结构里，进程环境块,而PEB数据结构，在每个进程中，是一个固定的位置，是一个绝对的常量地址。这个地址就是fs:ebx+0x30,所以地址就可以不依赖于任何API或者其他依赖，直接用汇编代码就能访问到。从这里我们能一层层找到dll的基地址,然后再从dll的基地址，通过PE文件的数据结构，文件头，找到dll的导出表。然后再在导出表中的数据结构中，通过函数名称的比较，得到已经在内存中的函数的地址。所以代码中的循环，findFunctionAddr 的递归函数，和searchLoop,就是在遍历dll的导出表。代码中大量使用到了硬编码的偏移地址，比如![](images/hardcode.png)就是因为上面这些说到的系统的数据结构，都是固定的结构，在每个系统中都是一样的，所以可以固定。好，通过系统中若干数据结构这种原始的访问方式，可以找到API函数。  
+下面一个问题。shellcode中还用到了字符串。至少函数地址的名称是需要的。还有调用WinExec的参数 calc.exe.如果我们在C语言里编程，编译器会把可执行程序的代码和字符串，放在不同的地址。代码 机器指令在 text段中， 字符串在data段中。地址相差很远。而我们objdump，只取了代码段.没有取数据段，那要shellcode就太大了，而且中间可能会有很多的填充字符。而且数据地址很有可能是绝对地址。code一dump出来，放在了其他环境中执行，那么地址就变了。所以字符串，code也是找不到的.大家可以实验一下，你们编一个程序，用到字符串，可以看看字符串的地址和代码的地址，差很远。那唯一的办法，用一种什么方式，把字符串硬编码在shellcode中。让字符串，变为代码的一部分，内嵌在机器指令中。看这里，这儿636c6163\6578652e![](images/calcexe.png)是 calc.exe的big ending 反写,压入栈以后，就形成了字符串。这样就把字符串嵌入机器指令了，作为机器指令的操作数。好了，有了以上基础知识，然后我再给大家一些参考资料。相信大家能读懂这一段shellcode了。  
+稍等给大家发几个数据结构的详细的参考资料。[1](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/-peb)、[2](https://www.cnblogs.com/binlmmhc/p/6501545.html)、[3](https://docs.microsoft.com/en-us/windows/win32/api/winternl/ns-winternl-peb)、[4](https://en.wikipedia.org/wiki/Process_Environment_Block)
+* 今天的作业：1、详细阅读 www.exploit-db.com 中的shellcode。建议找不同功能的，不同平台的 3-4个shellcode解读。2、修改示例代码的shellcode，将其功能改为下载执行。也就是从网络中下载一个程序，然后运行下载的这个程序。提示：Windows系统中最简单的下载一个文件的API是 UrlDownlaodToFileA
+* 其中第二个作业，原参考代码只调用了一个API函数，作业要求调用更多的API函数了，其中涉及到的参数也更复杂，但是原理是相通的。URLDownloadToFileA函数在 Urlmon.dll 这个dll中，这个dll不是默认加载的，所以可能还需要调用LoadLibrary函数
+
+
+我来解释一下代码，VirtualProtect 函数会把第一个参数，这里是 func，所指向的内存地址的 第二个参数，这里是 sizeof(code)，这段内存区域所在分页的内存属性修改为第三个参数的属性。PAGE_EXECUTE_READWRITE 表示这段内存，是可读可写可执行。然后 通过第四个参数 dwOldProtect 反正在修改之前的内存保护属性。
