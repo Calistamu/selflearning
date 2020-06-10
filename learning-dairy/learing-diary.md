@@ -1,7 +1,8 @@
 # 学渣的自我修养(与日俱进)
 
 ## 2020.6.10
-2020.6.10之前，学习了:二维码+python的itchat库+python的turtle库
+2020.6.10之前，学习了:二维码+python的itchat库+python的turtle库。
+今日学习：了解了csp认证和codeforces+上了"腾讯犀牛鸟t-star"比赛第二课
 ### 二维码  
 [二维码](https://zh.wikipedia.org/wiki/%E4%BA%8C%E7%B6%AD%E7%A2%BC)和[条形码](https://zh.wikipedia.org/wiki/%E4%B8%80%E7%BB%B4%E6%9D%A1%E7%A0%81)的[区别](https://blog.csdn.net/dcrmg/article/details/52106805)  
 * 二维码是一个总的概念。常见的二维码有：PDF417码、汉信码、颜色条码、[QR码](https://zh.wikipedia.org/wiki/QR%E7%A2%BC)  
@@ -20,3 +21,4 @@
 ### python-turtle
 可以自动画图，保存了一个自动化小猪佩奇的代码。  
 >code/peggi.py
+
