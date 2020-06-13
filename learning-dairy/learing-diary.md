@@ -32,6 +32,8 @@
 * sqlmapK
 * win10手势
 * 玩转vs code
+* zoomit
+* 规则引擎
 ### utools
 [utools官网](https://u.tools/)    
 学习文章：[黑科技神器-uTools](https://www.cnblogs.com/goodAndyxublog/archive/2020/03/14/12490721.html)
@@ -85,5 +87,8 @@ python编写的sql注入工具。[sqlmap](https://github.com/sqlmapproject/sqlma
 [Git version control in VS Code](https://code.visualstudio.com/docs/introvideos/versioncontrol)
 ### zoomit
 [ZoomIt v4.5.2](https://docs.microsoft.com/en-us/sysinternals/downloads/zoomit)  
+
+### 规则引擎
+大创开发的时候了解到规则引擎：ckrule和drools。知识有了理论认知，没能实现
 
 

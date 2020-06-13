@@ -19,6 +19,12 @@
 - [] 十字绣、苏绣
 - [] 学CG
 - [] 考csp认证
+# 要玩的网站
+[bWAPP](http://www.itsecgames.com/)  
+[DVIA](http://damnvulnerableiosapp.com/)  
+[gameofhacks](http://www.gameofhacks.com/)  
+[google-gruyere](http://google-gruyere.appspot.com/)  
+[hackthis](https://defendtheweb.net/?hackthis)  
 ## 2020目标清单
 - [x] 雅思
 - [x] 大创
