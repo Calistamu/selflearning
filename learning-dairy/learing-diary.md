@@ -91,4 +91,35 @@ python编写的sql注入工具。[sqlmap](https://github.com/sqlmapproject/sqlma
 ### 规则引擎
 大创开发的时候了解到规则引擎：ckrule和drools。知识有了理论认知，没能实现
 
+## 2020.6.15
+
+### git写博客
+* 还可以用gridea
+本次学习使用了[hexo](https://hexo.io/)  
+1. install git(done)  
+2. install nodejs
+* [nodejs-download](https://nodejs.org/en/download/)
+* 附带下载了chocolatey
+* 添加到环境变量
+3. Install Hexo
+   * [nodejs-doc](https://nodejs.org/en/docs/)
+```
+npm install -g hexo-cli
+
+npm install hexo
+
+```
+### Typora
+虽然之前就了解到了[typora](https://typora.io/)，今天才认识到这个写markdown的工具有多么好，确实在写.md方面比vs code方便很多很多。
+
+### LaTex
+
+[LaTex](https://www.latex-project.org/)
+
+对于windows有三种选择：  
+
+* MiKTex(选择了这种)
+* proTeXt
+* TeX live
+
 
