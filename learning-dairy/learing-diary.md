@@ -297,4 +297,7 @@ symbols_count_time:
 * proTeXt
 * TeX live
 
+## 2020.6.15
 
+### bilibili投稿工具
+解决了bilibili视频合集的问题
