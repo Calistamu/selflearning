@@ -97,19 +97,52 @@ python编写的sql注入工具。[sqlmap](https://github.com/sqlmapproject/sqlma
 * 还可以用gridea
 本次学习使用了[hexo](https://hexo.io/)  
 1. install git(done)  
-2. install nodejs
-* [nodejs-download](https://nodejs.org/en/download/)
-* 附带下载了chocolatey
-* 添加到环境变量
+
+```
+git config --global user.name "你的GitHub用户名"
+git config --global user.email "你的GitHub注册邮箱"
+ssh-keygen -t rsa -C "你的GitHub注册邮箱"
+# 打开GitHub_Settings_keys 页面，新建new SSH Key
+# 在Git Bash中检测GitHub公钥设置是否成功，输入ssh git@github.com
+```
+
+
+
+1. install nodejs
+   * [nodejs-download](https://nodejs.org/en/download/)
+   * 附带下载了chocolatey
+   * 添加到环境变量
+   * [nodejs-doc](https://nodejs.org/en/docs/) 
+      ```bash
+node -v #node.js版本信息
+npm -v #npm版本信息
+      ```
+
+
+
 3. Install Hexo
-   * [nodejs-doc](https://nodejs.org/en/docs/)
+   * [hexo-doc](https://hexo.io/docs/)
 ```
+# cd 本地git仓库文件夹
+# 或npm install hexo
 npm install -g hexo-cli
+# 查看版本验证成功
+hexo -v 
 
-npm install hexo
-
+# 建一个空文件夹并cd进入
+# 初始化文件夹
+hexo init
+# 生成静态网页
+hexo g
+# 打开本地服务器
+hexo s
+# 浏览localhost:4000/,看到hexo的页面
+# 写好的文章放到./hexo/source/_post/下
 ```
+* [hexo-configureation](https://hexo.io/docs/configuration.html)
+
 ### Typora
+
 虽然之前就了解到了[typora](https://typora.io/)，今天才认识到这个写markdown的工具有多么好，确实在写.md方面比vs code方便很多很多。
 
 ### LaTex
