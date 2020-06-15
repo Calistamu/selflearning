@@ -157,12 +157,14 @@ hexo s
 
 4. hexo-github deploy
 * [hexo-configureation](https://hexo.io/docs/configuration.html)
+* [GitHub Pages](https://hexo.io/docs/github-pages)
+* [超详细hexo+github page搭建技术博客教程](https://segmentfault.com/a/1190000017986794)
 
 ```
 npm install hexo-deployer-git --save
 
 cd ./hexo
-# 打开_config.yml,如下设置
+# 打开_config.yml,如下设置必选
 deploy:
   type: git
   repository: https://github.com/用户名/用户名.github.io
@@ -178,7 +180,108 @@ hexo g -d
 
 5. 更换主题
 
+   从[themes](https://hexo.io/themes/)中选择一个，git clone 到hexo/theme/文件夹下。
+
+   * 不同主题的github仓库中有相应的说明
+   * [Hexo-GitHub搭建个人博客配置教程](https://bainingchao.github.io/2018/09/19/Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/)
+   * [超详细Hexo+Github博客搭建小白教程](https://zhuanlan.zhihu.com/p/35668237)
+
+6. 添加动漫人物
+
+   ```
+   npm install --save hexo-helper-live2
+   npm install live2d-widget-model-shizuku
+   # ——config.yml
+   live2d:
+     enable: true
+     scriptFrom: local
+     pluginRootPath: live2dw/
+     pluginJsPath: lib/
+     pluginModelPath: assets/
+     tagMode: false
+     log: false
+     model:
+       use: live2d-widget-model-shizuku
+     display:
+       position: right
+       width: 150
+       height: 300
+     mobile:
+       show: true
+     react:
+       opacity: 0.7
    
+   ```
+
+   
+
+7. 添加水印
+
+   根目录下增加watermark.py,内容如下：
+
+   ```
+   # -*- coding: utf-8 -*-
+   import sys
+   import glob
+   from PIL import Image
+   from PIL import ImageDraw
+   from PIL import ImageFont
+   
+   
+   def watermark(post_name):
+       if post_name == 'all':
+           post_name = '*'
+       dir_name = 'source/_posts/' + post_name + '/*'
+       for files in glob.glob(dir_name):
+           im = Image.open(files)
+           if len(im.getbands()) < 3:
+               im = im.convert('RGB')
+               print(files)
+           font = ImageFont.truetype('STSONG.TTF', max(30, int(im.size[1] / 20)))
+           draw = ImageDraw.Draw(im)
+           draw.text((im.size[0] / 2, im.size[1] / 2),
+                     u'@yourname', fill=(0, 0, 0), font=font)
+           im.save(files)
+   
+   
+   if __name__ == '__main__':
+       if len(sys.argv) == 2:
+           watermark(sys.argv[1])
+       else:
+           print('[usage] <input>')
+   
+   ```
+
+   ```
+   # usage
+   python3 watermark.py postname
+   python3 watermark.py all
+   ```
+
+   
+
+8. 解决.md中没有图片
+
+   * [在Hexo博客中插入图片的各种方式](https://fuhailin.github.io/Hexo-images/)
+
+   ```
+   # 修改_config.yml,实现的方式有多种，这里选择相对路径本地引用的方式
+   post_assert_folder:true
+   # 在hexo/source/_posts/内将图片放到与md文件同名文件夹中
+   ```
+
+9. 增加字数统计和阅读时长
+```
+npm install hexo-symbols-count-time --save
+
+# _config.yml中设置
+# 文章字数统计
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+```
 
 ### Typora
 
