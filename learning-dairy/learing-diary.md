@@ -96,9 +96,13 @@ python编写的sql注入工具。[sqlmap](https://github.com/sqlmapproject/sqlma
 ### git写博客
 * 还可以用gridea
 本次学习使用了[hexo](https://hexo.io/)  
-1. install git(done)  
+* 参考[超详细Hexo+Github博客搭建小白教程](https://zhuanlan.zhihu.com/p/35668237)及各个官方文档
+1. 仓库准备
+
+github与本地连接
 
 ```
+# git has been installed
 git config --global user.name "你的GitHub用户名"
 git config --global user.email "你的GitHub注册邮箱"
 ssh-keygen -t rsa -C "你的GitHub注册邮箱"
@@ -106,40 +110,75 @@ ssh-keygen -t rsa -C "你的GitHub注册邮箱"
 # 在Git Bash中检测GitHub公钥设置是否成功，输入ssh git@github.com
 ```
 
+github建仓库
 
+* 仓库名称一定是：用户名.github.io
+
+* public+travis+initialize readme.md
+
+* 仓库setting中enable github page+select a theme,pr以后再次进入setting看到自己网页的url
+
+  ![github-ok](images/github-ok.png)
 
 1. install nodejs
    * [nodejs-download](https://nodejs.org/en/download/)
    * 附带下载了chocolatey
    * 添加到环境变量
    * [nodejs-doc](https://nodejs.org/en/docs/) 
-      ```bash
+     
+```bash
 node -v #node.js版本信息
 npm -v #npm版本信息
-      ```
+```
 
-
+ ![nodejs-ok](images/nodejs-ok.png)
 
 3. Install Hexo
    * [hexo-doc](https://hexo.io/docs/)
+
 ```
-# cd 本地git仓库文件夹
+# 新建一个文件夹
+# cd 新建文件夹
 # 或npm install hexo
 npm install -g hexo-cli
 # 查看版本验证成功
 hexo -v 
 
-# 建一个空文件夹并cd进入
+# 本地建一个空文件夹并cd进入
 # 初始化文件夹
 hexo init
 # 生成静态网页
 hexo g
 # 打开本地服务器
 hexo s
-# 浏览localhost:4000/,看到hexo的页面
-# 写好的文章放到./hexo/source/_post/下
+# 浏览localhost:4000/,看到hexo的页面就成功了
 ```
+![hexo-ok](images/hexo-ok.png)啊
+
+4. hexo-github deploy
 * [hexo-configureation](https://hexo.io/docs/configuration.html)
+
+```
+npm install hexo-deployer-git --save
+
+cd ./hexo
+# 打开_config.yml,如下设置
+deploy:
+  type: git
+  repository: https://github.com/用户名/用户名.github.io
+  branch: master
+
+# generate and deploy
+hexo g -d
+# 出现弹窗输入github账号密码登录
+# 为了方便区分，拷贝一个本地的.md到/source/_posts中（这个文件夹默认存储博客页面）。再次访问看到页面变了。
+```
+
+![hexo-github-deploy-ok](images/hexo-github-deploy-ok.png)
+
+5. 更换主题
+
+   
 
 ### Typora
 
