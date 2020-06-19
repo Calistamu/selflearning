@@ -301,3 +301,86 @@ symbols_count_time:
 
 ### bilibili投稿工具
 解决了bilibili视频合集的问题
+
+## 2020.6.19
+
+* dirtycow
+* 反弹shell
+* swp文件
+* cookie vs session
+* kali的xss测试工具
+* Verilog
+
+### dirtycow
+
+[dirtycow](https://dirtycow.ninja/)的CVE编号：CVE-2016-5195
+
+* 只是了解，没有进行漏洞复现
+
+### 反弹shell
+
+[Linux反弹shell（一）文件描述符与重定向](https://xz.aliyun.com/t/2548)  
+
+[Linux 反弹shell（二）反弹shell的本质](https://xz.aliyun.com/t/2549#toc-0)
+
+* 只是了解，没有进行实验，想起ns入侵提权
+
+###  swp文件
+
+[关于vi不正常退出产生的swp文件](https://xz.aliyun.com/t/2549#toc-0)
+
+### cookie vs session
+
+[What is the difference between session and cookies?]([https://www.tutorialspoint.com/What-is-the-difference-between-session-and-cookies#:~:text=Cookies%20and%20Sessions%20are%20used,as%20well%20as%20a%20server.&text=A%20session%20creates%20a%20file,and%20their%20values%20are%20stored.](https://www.tutorialspoint.com/What-is-the-difference-between-session-and-cookies#:~:text=Cookies and Sessions are used,as well as a server.&text=A session creates a file,and their values are stored.))
+
+cookie个性化投放示例：[Cookies: Personalized surfing-lufthansaeXperts](https://www.lufthansaexperts.com/lang/cns/cookies-personalized-surfing.html)
+
+### kali的xss测试工具
+
+[beef](https://beefproject.com/)
+
+[xsser](https://tools.kali.org/web-applications/xsser)
+
+### [Verilog](https://en.wikipedia.org/wiki/Verilog)
+
+### 视频加字幕工具
+
+面包视频（app）  
+
+[网易见外工作台](https://jianwai.youdao.com/)
+
+[arctime](https://arctime.org/)
+
+[aegisub](http://www.aegisub.org/)
+
+[小丸工具箱](https://maruko.appinn.me/)
+
+### 电子书
+
+#### 博看网（图书、期刊、报纸）
+
+[博看书苑](http://zq.bookan.com.cn/?t=index&id=23501)
+[博看书苑APP下载](http://download.bookan.com.cn/)
+
+#### 多格式电子书下载
+
+[ePUBw](https://epubw.com/)
+[ePUBee](http://cn.epubee.com/books/)
+[周读](http://www.ireadweek.com/)
+[千百度](https://hotbaidu.com/)
+[三秋书屋](https://www.d4j.cn/)
+[我的小书屋](http://xngisha.com/)
+
+#### PDF印刷版电子书下载
+
+[PDF之家](http://pdfzj.cn/)
+[读书皮](http://slfswh.xiangzhan.com/)
+[E书联盟](http://www.book118.com/)
+[码农之家](http://www.xz577.com/)
+[搬书匠](http://www.banshujiang.cn/)
+
+#### 图书资源搜索引擎
+
+[鸠摩搜书](https://www.jiumodiary.com/)
+[智奇搜书](https://www.zqbook.top/)
+[梅子搜报网](http://mz.soubao.net/#/meizi/searchIndex)
