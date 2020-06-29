@@ -384,3 +384,12 @@ cookie个性化投放示例：[Cookies: Personalized surfing-lufthansaeXperts](h
 [鸠摩搜书](https://www.jiumodiary.com/)
 [智奇搜书](https://www.zqbook.top/)
 [梅子搜报网](http://mz.soubao.net/#/meizi/searchIndex)
+
+## 2020.6.29
+
+### 个人Logo涉及
+[hatchful](https://hatchful.shopify.com/)    
+[placeit](https://placeit.net/placeit-online-logo-maker?gclid=EAIaIQobChMIsImW_NWm6gIVmRL5AB2gZQ02EAEYASAAEgK08fD_BwE)  
+[wix](https://www.wix.com/createlogo6/logo-maker?utm_source=google&utm_medium=cpc&utm_campaign=1507103735^57651477586&experiment_id=logo^e^386667619425^&gclid=EAIaIQobChMIuLOkttKm6gIVBR6tBh3f4gsbEAAYASAAEgKQ7vD_BwE)---比较好，特比之处是会有预先的风格判定 
+[logoMakr](https://logomakr.com/) ---卡通（选用了这个）  
+[logogenie](https://www.logogenie.net/)---既有卡通也有商业
