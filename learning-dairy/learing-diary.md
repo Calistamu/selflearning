@@ -386,10 +386,19 @@ cookie个性化投放示例：[Cookies: Personalized surfing-lufthansaeXperts](h
 [梅子搜报网](http://mz.soubao.net/#/meizi/searchIndex)
 
 ## 2020.6.29
-
+* 个人logo---已拥有
+* 个人live2d---待完成
+* 了解了vtuber---待完成
 ### 个人Logo涉及
 [hatchful](https://hatchful.shopify.com/)    
 [placeit](https://placeit.net/placeit-online-logo-maker?gclid=EAIaIQobChMIsImW_NWm6gIVmRL5AB2gZQ02EAEYASAAEgK08fD_BwE)  
 [wix](https://www.wix.com/createlogo6/logo-maker?utm_source=google&utm_medium=cpc&utm_campaign=1507103735^57651477586&experiment_id=logo^e^386667619425^&gclid=EAIaIQobChMIuLOkttKm6gIVBR6tBh3f4gsbEAAYASAAEgKQ7vD_BwE)---比较好，特比之处是会有预先的风格判定 
 [logoMakr](https://logomakr.com/) ---卡通（选用了这个）  
 [logogenie](https://www.logogenie.net/)---既有卡通也有商业
+### 个人live2d---等待完成
+[怎样制作属于自己的Live2D角色？](https://www.gcores.com/articles/19597)
+### 虚拟up主---等待实现
+[如何成为虚拟主播/vtuber？](https://www.zhihu.com/question/299039001/answer/525595998)  
+[怎么制作一个自己的vtuber?](https://www.zhihu.com/question/336253862)
+### 卡通形象
+[怎么制作一个自己的卡通形象？](https://www.zhihu.com/question/310958762)---总结了卡通头像、卡通形象、图片变卡通
