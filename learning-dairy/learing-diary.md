@@ -402,3 +402,156 @@ cookie个性化投放示例：[Cookies: Personalized surfing-lufthansaeXperts](h
 [怎么制作一个自己的vtuber?](https://www.zhihu.com/question/336253862)
 ### 卡通形象
 [怎么制作一个自己的卡通形象？](https://www.zhihu.com/question/310958762)---总结了卡通头像、卡通形象、图片变卡通
+
+## 2020.7.28
+
+* 今天完成了Q群的入群考试题
+
+### 入群考试题
+
+#### 题目要求:《时间管理》
+
+小罗有n个女友，有一天，这n个女友都准备和小罗在同一个地方约会，但是每个女友约会的时间段各不相同 。由于那天小罗精力不佳，同时最多只能和k名女友约会。现在小罗想知道这一天最多能和几个女友约会。小罗找到了你，请你帮他规划时间，帮助小罗能与尽可能多的女友约会。
+
+
+
+输入格式： 
+第一行为一个整数N，表示有N组测试。 
+接下来N组输入，每组的第一行为两个整数n和k，其含义为请见题干。接下来n行，每行两个整数si,ei(si小于ei，且si，ei在[0,24]之间),表示第i个女友约定的约会开始时间和结束时间 
+
+输出格式： 
+输出每组小罗最多能约的女友数。 
+
+样例： 
+输入 
+2 
+4 1 
+1 2 
+2 3 
+3 4 
+4 5 
+5 2 
+1 2 
+1 3 
+1 6 
+5 8 
+7 8 
+
+输出 
+4 
+4 
+
+注意：提交答案后会生成一张答题页面，申请入群时带上该页面的url。
+
+#### 代码
+
+```
+​```
+#include<stdio.h>
+#include<iostream>
+using namespace std;
+#pragma warning(disable:4996)
+int main()
+{
+	int N, n, k,*result;
+	int tempn, tempk;
+	scanf_s("%d", &N);//N组
+	result = (int*)malloc(N * (sizeof(int)));
+	memset(result, 0, N);
+	for (int i = 0; i < N; i++)
+	{   
+		scanf_s("%d %d", &n, &k);
+			int* si, * ei, j;
+			si = (int*)malloc(n * (sizeof(int)));
+			ei = (int*)malloc(n * (sizeof(int)));
+			memset(si, 0, n);
+			memset(ei, 0, n);
+			//存数据
+			for (j = 0; j < n; j++)
+			{
+				scanf_s("%d", &si[j]);
+				scanf_s("%d", &ei[j]);
+			}
+			////存取后打印数据测试
+			//printf("录入后数据打印:\n");
+			//for (int t = 0; t < n; t++)
+			//{
+			//	printf("%d %d\n", si[t], ei[t]);
+			//}
+
+			//数据处理，存成一个si唯一，si对应ei最大的数组。
+			int* testn, * testk, testi = 0;
+			testn = (int*)malloc(n * (sizeof(int)));
+			testk = (int*)malloc(n * (sizeof(int)));
+			memset(testn, 0, n);
+			memset(testk, 0, n);
+			for (j = 0; j <= n; j++)
+			{
+				int tempi;
+				if (j == 0)
+				{
+					testn[testi] = si[0];
+					testk[testi] = ei[0];
+				}
+				else
+				{
+					int max, record = 0;
+					for (tempi = 0; tempi <= testi; tempi++)
+					{
+						if (si[j] == testn[tempi])
+						{
+							record = 1;
+							if (ei[j] > testk[tempi])
+								testk[tempi] = ei[j];
+						}
+					}
+					if (record == 0)
+					{
+						testi++;
+						testn[testi] = si[j];
+						testk[testi] = ei[j];
+					}
+				}
+			}
+			////处理后数据打印
+			//printf("处理后数据打印:\n");
+			//for (int t = 0; t < testi; t++)
+			//{
+			//	printf("%d %d\n", testn[t], testk[t]);
+			//}
+
+			//计算人数
+			int num=0;
+			for (j = 0; j < testi; j++)
+			{
+				int temp, count = 0;
+				for (temp = 0; temp < n; temp++)
+				{
+					if (testn[j] == si[temp])
+					{
+						if (testk[j] >= ei[temp])
+						{
+							count++;
+						}
+					}
+				}
+				if (count > 2)
+					num += 2;
+				else
+					num += count;
+			}
+			//printf("%d", num);
+			result[i] = num;
+	}
+	
+	
+	//打印最终结果
+	//printf("最终输出结果：\n");
+		for (int i = 0; i < N; i++)
+		{
+			printf("%d\n", result[i]);
+		}
+}
+
+```
+
