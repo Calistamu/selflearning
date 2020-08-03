@@ -555,3 +555,17 @@ int main()
 
 ```
 
+## 2020.8.3
+### win10-burpsuite安装配置
+忽略[Burpsuite](https://portswigger.net/burp)的安装下载，可参考[BurpSuite安装和配置](https://www.cnblogs.com/fighter007/p/10544762.html)  
+本次实验室用的是firefox,配置代理以后打开出现了警告。  
+![](images/firefox-warning.png)  
+将此警告进行google,参考[【burpSuite】浏览器设置代理后无法访问https](https://blog.csdn.net/AlimSah/article/details/61912781),访问[Installing Burp's CA Certificate in Firefox](https://portswigger.net/support/installing-burp-suites-ca-certificate-in-firefox),根据指南进行操作。如下图是下载证书到本地。  
+![](images/download-CA.png)  
+* 关于firefox提示没有网  
+![](images/firefox-nonet.png)  
+参考[[FAQ] 浏览器提示“您必须先登录此网络才能访问互联网”](http://mozilla.com.cn/thread-421781-1-1.html)，关闭检测功能的方式是：1.地址栏输入 about:config。2.搜索 network.captive-portal-service.enabled，将值设为false。  
+![](images/firefox-set1.png)  
+![](images/firefox-set2.png)
+
+
