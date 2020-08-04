@@ -569,3 +569,12 @@ int main()
 ![](images/firefox-set2.png)
 
 
+## 2020.8.4
+### git clone太慢
+* 参考[git clone速度太慢的解决办法](https://www.jianshu.com/p/3f6477049ece)
+
+在[ipaddress](https://www.ipaddress.com/)中分别搜索'github.global.ssl.fastly.net'和'github.com'。得到：'199.232.69.194'和'140.82.113.4'。由于使用win10,修改'C:\Windows\System32\drivers\etc\hosts'，添加ip。
+* [Win10修改编辑hosts文件无法保存怎么办](https://jingyan.baidu.com/article/624e7459b194f134e8ba5a8e.html)
+
+![](images/add-hosts.png)  
+Winodws系统的做法：打开CMD，输入```ipconfig /flushdns```,再git clone确实快了很多。
