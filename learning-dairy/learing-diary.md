@@ -578,3 +578,4 @@ int main()
 
 ![](images/add-hosts.png)  
 Winodws系统的做法：打开CMD，输入```ipconfig /flushdns```,再git clone确实快了很多。
+### [How To Ask Questions The Smart Way](http://www.catb.org/~esr/faqs/smart-questions.html#translations)
