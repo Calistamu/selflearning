@@ -585,3 +585,7 @@ Winodws系统的做法：打开CMD，输入```ipconfig /flushdns```,再git clone
 * kali自带
 * 想要在win10上安装，参考[Windows 10 安装Python2.7](https://www.jianshu.com/p/00f63830b0fa)安装python2.然后发现与Python3冲突的一系列问题太繁琐去解决，因此放弃，以后就用kali吧。
 * [利用Volatility进行Windows内存取证分析(一)：初体验](https://www.freebuf.com/sectool/124690.html)
+
+## 2020.9.15
+### phpcms站点管理
+[phpcms开发教程 ](https://www.php.cn/php/php-related.html)
