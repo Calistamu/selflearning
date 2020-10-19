@@ -589,3 +589,90 @@ Winodws系统的做法：打开CMD，输入```ipconfig /flushdns```,再git clone
 ## 2020.9.15
 ### phpcms站点管理
 [phpcms开发教程 ](https://www.php.cn/php/php-related.html)
+
+## 2020.10.19
+### [fofa](https://fofa.so/)
+FOFA是白帽汇推出的一款网络空间资产搜索引擎。它能够帮助用户迅速进行网络资产匹配、加快后续工作进程。例如进行漏洞影响范围分析、应用分布统计、应用流行度排名统计等。   
+使用：有语法参考
+#### 首先可以利用FOFA进行漏洞挖掘和安全研究。
+如果寻找某电商的子域名，可以根据其证书，header信息，备案号，页面引用的特定文件等找到相关其子域名。对于一些有cdn的，也可以绕过cdn找到真实IP。
+* [什么是cdn？](https://www.jianshu.com/p/ce98fbff39ac)
+* 如果知道一个有cdn防护的域名，在fofa上可以直接找到它的真实IP  
+可以进行漏洞预警和资产分布统计。当新的漏洞被曝光后，可以利用FOFA进行快速统计分析，找到全球和全国受漏洞影响的资产分布，在许多人之前迅速掌握漏洞影响情况，没准还能找到一两个大公司漏洞。
+#### 找Burp Suite代理
+#### 找目录遍历漏洞
+#### 参考文献   
+[利用FOFA做些有趣的事](https://www.freebuf.com/column/186093.html)    
+[第二期 |“有趣”的FOFA](https://www.freebuf.com/fevents/227502.html)   
+[第三期 |“有趣”的FOFA](https://www.freebuf.com/fevents/229074.html)   
+[第四期 |“有趣”的FOFA](https://www.freebuf.com/fevents/230876.html)   
+
+### 关于tide安全团队---还没有挨个去看去使用
+#### Wiki专题
+[Tide安全团队](http://www.tidesec.com)
+[Wiki知识库](https://www.yuque.com/tidesec)
+[FreeBuf专栏](https://www.freebuf.com/column/648)
+[远控免杀 Wiki](https://github.com/TideSec/BypassAntiVirus)
+[红蓝对抗 Wiki](https://www.yuque.com/tidesec/RedTeam)
+[ICS工控安全](https://www.yuque.com/tidesec/ICS)
+[IoT物联网安全](https://www.yuque.com/tidesec/IoT)
+[APP移动安全](https://www.yuque.com/tidesec/APP)
+[CobaltStrike](https://www.yuque.com/tidesec/CobaltStrike)
+[应急响应](Wiki:https://www.yuque.com/tidesec/Emergency)
+[代码审计](Wiki:https://www.yuque.com/tidesec/CodeAudit)
+#### 在线服务
+[潮汐指纹在线识别系统TideFinger](http://finger.tidesec.com)
+[TideInspire移动端安全管控平台](http://app.tidesec.com)
+[TideVoice潮声漏洞在线检测平台](http://poc.tidesec.com)
+[Tide安全团队统一身份认证平台](http://sso.tidesec.com)
+#### 自研工具
+[分布式web漏洞扫描器WDScanner](https://github.com/TideSec/WDScanner)
+[潮汐网络空间测绘系统](https://github.com/TideSec/Tide)
+[FuzzScanner](https://github.com/TideSec/FuzzScanner)
+[潮汐指纹识别系统TideFinger](https://github.com/TideSec/TideFinger)
+[TideInspire移动端安全管控平台](https://github.com/TideSec/TideInspire)
+[Weblogic安全检测工具](https://github.com/rabbitmask/WeblogicScan)
+[Mars(战神)](ttps://github.com/TideSec/Mars)
+[潮涌web漏洞自动化挖掘平台](https://github.com/TideSec/TideWave)
+[潮巡一站式资产管理与威胁监测系统](https://github.com/TideSec/TideScout)
+[应急工具包](https://github.com/tide-emergency/yingji)
+[Burp敏感信息检测插件](https://github.com/nian-hua/BurpExtender)
+[通用web弱口令破解工具](https://github.com/TideSec/web_pwd_common_crack)
+[代理资源池](https://github.com/TideSec/Proxy_Pool)
+[Weblogic解密工具包](https://github.com/TideSec/Decrypt_Weblogic_Password)
+### [bitrix24](https://www.bitrix24.cn/)
+个人企业通信、任务和项目管理、客户关系管理、联络中心、自助建站。
+* 多种工具
+* 既收费也免费
+### 黑客入门---还没有挨个阅读和学习
+#### [我的黑客和渗透测试学习路线](https://www.cnblogs.com/HackKen/p/7732515.html)---文章已读，以下笔记还没有详细学习
+* 在任何时候，我都是孤独的
+- [] 《精通脚本黑客》第二版《Web安全攻防宝典实战篇》
+- [] [黑客术语大全](https://wenku.baidu.com/view/bd2ee7d249649b6648d747a8.html)
+- [] 要掌握Hydra、medusa、sqlmap、AWVS、Burpsuite、Beef-XSS、Metasploit、Nessus、wireshark等安全工具，这些是在安全圈和渗透圈比较知名的渗透工具与平台。
+- [] 了解安全圈的动态：Freebuf、tools论坛、看雪论坛
+* 你现在可以学习一些比较著名的渗透测试系统了:Kali linux  Parrot OS Arch linux等较知名的一些渗透系统，有机会的话还可以研究一下对于网站和服务器安全狗、云锁等一些防护软件的绕过
+#####  推荐学习安全书籍：
+- [] WIndows Powershell应用手册
+- [] 黑客命令行攻防实战详解
+- [] Shellcoder编程揭秘
+- [] 高度安全环境下的渗透测试
+- [] Windows黑客技术揭秘与攻防
+- [] 黑客调式技术揭密
+- [] 黑客反汇编揭秘（第二版）
+- [] 黑客之道：漏洞发掘的艺术
+- [] 木马技术揭秘与防御
+- [] Coding for Penetrating .Penetration
+- [] Exploit编写系列教程
+- [] Exploit应用开发中文手册
+- [] Exploit-Exercises
+- [] Q版缓冲区溢出教程
+- [] 精通黑客编程
+- [] 杀不死的秘密-反汇编揭露黑客免杀变种技术
+- [] 挖0day
+- [] metasploitguide
+- [] Backtrack5从入门到精通
+- [] Linux C编程实战
+- [] linux黑客大曝光
+- [] 常用黑客攻防技术大全　　
+
