@@ -677,3 +677,12 @@ FOFA是白帽汇推出的一款网络空间资产搜索引擎。它能够帮助�
 - [] linux黑客大曝光
 - [] 常用黑客攻防技术大全　　
 
+## 2020.10.26
+### xsser检测xss
+* 官方手册:[xsser](https://tools.kali.org/web-applications/xsser)
+* [XSSer：自动化XSS漏洞检测及利用工具](https://www.freebuf.com/sectool/173228.html)
+### 代理池---看了看，理解了原理和用途，还没做实验
+* [说说代理池](说说代理池)
+* github有很多已经做好的，比如：[ProxyPool](https://github.com/WiseDoge/ProxyPool)
+### [fortify](https://www.microfocus.com/en-us/products/application-security-testing/overview)
+* 白盒软件源代码安全测试工具，快速人工审计
