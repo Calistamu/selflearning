@@ -693,3 +693,15 @@ FOFA是白帽汇推出的一款网络空间资产搜索引擎。它能够帮助�
 * [九种姿势运行Mimikatz](https://www.freebuf.com/articles/web/176796.html)
 * [Mimikatz的18种免杀姿势及防御策略](https://github.com/gentilkiwi/mimikatz)
 * [ProcDump](https://docs.microsoft.com/en-us/sysinternals/downloads/procdump)导出lsass.exe
+
+## 2020.10.28
+### [Apowersoft](https://www.apowersoft.com/)-一个强大的工具库
+### 读了一篇文章很清醒
+* 大学生：单纯（好骗）、有求知欲（好骗）、闲钱多（好骗） 
+
+三种思维不要有：
+* 终点式思维-学习没有终点，“原来成长的过程，就是始终都在和基因作斗争”，没有终点乌托邦
+* 秘籍式思维-“万能就是最大的无能”，最厉害的能力就是学习力
+* * 哈佛的学习力课程值得一看---还没看
+* 空杯型思维-“大脑它很单纯，我们需要时刻对输入大脑的东西有所警觉，尤其是那些含有说服性、营销性、煽动性的鸡汤，贴标签的文字”，不要来者不拒。
+* “猪在泥坑打滚只会觉得快乐，但我们是人。”
