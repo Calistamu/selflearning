@@ -705,3 +705,21 @@ FOFA是白帽汇推出的一款网络空间资产搜索引擎。它能够帮助�
 * * 哈佛的学习力课程值得一看---还没看
 * 空杯型思维-“大脑它很单纯，我们需要时刻对输入大脑的东西有所警觉，尤其是那些含有说服性、营销性、煽动性的鸡汤，贴标签的文字”，不要来者不拒。
 * “猪在泥坑打滚只会觉得快乐，但我们是人。”
+
+## 2020.11.19
+### 视频和美图素材网站
+#### [天空之城](http://www.skypixel.com/)---航拍作品
+#### [液态星球](https://alteredqualia.com/xg/examples/nebula_artefact.html)---星球图生成器
+#### [街头艺术](https://streetartutopia.com/)
+#### [colorssal](https://www.thisiscolossal.com/)---创意视频和图片
+#### [8kraw](https://www.8kraw.com/)---盛世大片
+#### [渐变色生成](https://uigradients.com/#Christmas)
+#### [日系配色](https://nipponcolors.com/#imayoh)
+#### [中国风配色](http://zhongguose.com/)
+#### [站酷](https://www.zcool.com.cn/)---设计师必备
+#### [dribble](https://dribbble.com/)---设计师必备
+#### [果汁排行榜](http://www.guozhivip.com/rank/)---各种各样的排行榜
+
+## 2020.12.2
+### driftnet-kali---从网络流量捕获图像并将其显示在X窗口中的软件
+```apt-get install driftnet```
