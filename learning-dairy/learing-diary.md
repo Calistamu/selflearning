@@ -723,3 +723,43 @@ FOFA是白帽汇推出的一款网络空间资产搜索引擎。它能够帮助�
 ## 2020.12.2
 ### driftnet-kali---从网络流量捕获图像并将其显示在X窗口中的软件
 ```apt-get install driftnet```
+
+## 2020.12.30
+### 威胁情报资源库
+shadan
+virustotal
+spamhaus
+X-Force
+otx
+ThreatCrowd
+hybrid
+alienvault
+vxvault
+malwaredomains
+openphish
+AbuseIPDB
+### 情报收集内容
+whois信息探测、DNS、IP存活、主机探测、操作系统探测、开发端口服务、服务协议、应用协议、设备等指纹识别、资产你国家省市ISP、经纬度标定探测覆盖、域名
+## 2021.1.12
+### 恶意代码之静态分析
+#### 0x00 分析技术
+* 使用反病毒软件来确认程序样本的恶意性
+* 使用哈希来识别恶意代码
+### 病毒扫描殷勤
+* [微步云沙箱](https://s.threatbook.cn/)
+* [virustotal](https://www.virustotal.com/old-browsers/)---国外软件，老旧，没有更多的拓展，只能得出是否有威胁，是否是恶意
+* [云沙箱]()
+* [华为云沙箱](https://lab.huaweicloud.com/?adp=1.2.1.4&ticket=ST-1405048-ggjdFijMdrJQu39oLfm9etQQ-sso)---无法使用
+* [virscan](https://www.virscan.org/)---国外软件，老旧，没有更多的拓展，只能得出是否有威胁
+* [腾讯哈勃系统](https://habo.qq.com/)---不支持高级用户注册，无法进一步使用
+* [360安全大脑沙箱云](https://ata.360.cn/)
+* [大圣·云沙箱](https://mac-cloud.riskivy.com/detect?theme=vulbox)
+
+## 2021.1.15
+### [无上帝兵](https://github.com/WWILLV/GodOfHacker)是假的
+
+## 2021.1.18
+### '//./globalroot/device/condrv/kernelconnect'蓝屏
+* [Windows 10 bug crashes your PC when you access this location](https://www.bleepingcomputer.com/news/security/windows-10-bug-crashes-your-pc-when-you-access-this-location/)  
+* [Threat Research Monitoring Windows Console Activity (Part 1)](https://www.fireeye.com/blog/threat-research/2017/08/monitoring-windows-console-activity-part-one.html)
+
