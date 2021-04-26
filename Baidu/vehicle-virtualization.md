@@ -138,7 +138,7 @@ MPC5748G- gw - rdb基于32位Power Architecture®MPC5748G超可靠微控制器�
       * COPI：Controller Out Peripheral In,控制器输出和外设输入
       * CIPO：Contriller In Peripheral Out,控制器输入和外设输出
       * SDIO：Serial Data In/Out,串行数据输入输出
-  
+    * [JTAG/SWD/ISP/SWIM单片机四种烧写方式](https://blog.csdn.net/LY1941514572/article/details/104543992)
 X-MPC5748G-GW内置软件：
 * AUTOSAR OS
 * MCAL
@@ -149,7 +149,9 @@ X-MPC5748G-GW内置软件：
 3. 根据示意图通电
 4. 用IDE调试
 # STM32
-
+意法半导体公司的32位微控制器集成电路家族。STM32系列32位微控制器基于Arm®Cortex®-M处理器，旨在为MCU用户提供新的自由度。它提供的产品结合了高性能、实时能力、数字信号处理、低功耗/低压操作和连接，同时保持完全集成和易于开发。 
+参考文献
+[STM32](https://en.wikipedia.org/wiki/STM32)
 # [智能驾驶系列课程](http://learn.baidu.com/pages/index.html#/specialInfo?specialId=3990)学习笔记
 
 # Hardware in the Loop 硬件在还
