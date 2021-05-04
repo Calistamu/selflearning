@@ -322,6 +322,10 @@ Android传感器模拟运行工具：
 
 # 区块链
 
+# AVP
+## 硬件分析
+### TLF35584QVVS2
+[TLF35584QVVS2](https://www.infineon.com/cms/en/product/power/dc-dc-converters/power-management-ics-pmic/optireg-pmic-automotive/tlf35584qvvs2/)
 # 虚拟化技术
 VMware
 Microsoft Hyper-V Citrix
