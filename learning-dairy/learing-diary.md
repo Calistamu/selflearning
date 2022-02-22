@@ -875,3 +875,8 @@ http://www.live-socks.net/
 
 内容来源6：https://github.com/ntkernel/lantern/blob/master/README.md
 
+## 2021.02.05
+### markdown转思维导图
+[markmap在线](https://markmap.js.org/repl/)
+### Git clone太慢
+git clone后加上--depth 1 
